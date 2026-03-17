@@ -52,6 +52,12 @@ import { content as fundamentos07 } from "@content/fundamentos/07-execution-cont
 import { content as fundamentos08 } from "@content/fundamentos/08-lexical-environment.js"
 import { content as fundamentos09 } from "@content/fundamentos/09-variable-environment.js"
 import { content as fundamentos10 } from "@content/fundamentos/10-modulos-externos.js"
+import { content as fundamentos11 } from "@content/fundamentos/11-ecossistema.js"
+
+
+import { content as varTipos01 } from "@content/variaveis-tipos/01-var";
+
+// no CONTENT_MAP:
 
 
 
@@ -70,8 +76,9 @@ const CONTENT_MAP = {
   "fundamentos/08-lexical-environment": fundamentos08,
   "fundamentos/09-variable-environment": fundamentos09,
   "fundamentos/10-modulos-externos": fundamentos10,
+  "fundamentos/11-ecossistema": fundamentos11,
 
- 
+  "variaveis-tipos/01-var": varTipos01,
 
   
 };
