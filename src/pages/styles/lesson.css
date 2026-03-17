@@ -66,12 +66,6 @@
   opacity: 0.3;
 }
 
-.lesson__position {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--muted-foreground);
-}
-
 /* =========================================================
    HEADER (TÍTULO E STATUS)
 ========================================================= */
@@ -105,7 +99,6 @@
   border-radius: var(--radius);
   cursor: pointer;
   transition: all 0.2s ease;
-  width: fit-content;
 }
 
 .lesson__btn-done:hover {
@@ -155,20 +148,7 @@
   font-style: italic;
 }
 
-.lesson__list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding-left: 1.25rem;
-  margin-bottom: 1.5rem;
-}
-
-.lesson__list li {
-  line-height: 1.6;
-}
-
-/* Inline Code */
-:not(pre)>code {
+code {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.9em;
   padding: 0.2em 0.4em;
@@ -179,7 +159,45 @@
 }
 
 /* =========================================================
-   BLOCOS DE CÓDIGO & BOTÃO DE CÓPIA
+   CARDS (GRID)
+========================================================= */
+
+.lesson__cards {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.lesson__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.lesson__card:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+}
+
+.lesson__card h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.lesson__card p {
+  font-size: 0.9375rem !important;
+  color: var(--muted-foreground) !important;
+  margin: 0 !important;
+}
+
+/* =========================================================
+   BLOCOS DE CÓDIGO & BOTÃO DE CÓPIA (MELHORADO)
 ========================================================= */
 
 .lesson__section pre {
@@ -187,30 +205,18 @@
   background-color: var(--sidebar);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2rem 1.5rem 1.5rem;
+  padding: 1.5rem;
   margin: 1.5rem 0;
-  overflow-x: auto;
+  overflow: hidden; 
 }
 
-.lesson__section pre code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  background: transparent;
-  border: none;
-  padding: 0;
-  color: var(--foreground);
-}
-
-/* Botão de Cópia Dinâmico */
 .lesson__copy-btn {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 0.6rem;
+  padding: 0.5rem 0.75rem;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -223,7 +229,7 @@
   z-index: 10;
   opacity: 0;
   transform: translateY(-5px);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
 }
 
 .lesson__section pre:hover .lesson__copy-btn {
@@ -237,27 +243,23 @@
   border-color: var(--primary);
 }
 
-.lesson__copy-btn--copied {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+.lesson__copy-btn:active {
+  transform: scale(0.95);
+}
+
+.lesson__copy-btn--success {
   color: var(--primary);
   border-color: var(--primary);
   background-color: color-mix(in oklch, var(--primary) 10%, var(--background));
 }
 
-.lesson__copy-icon {
-  display: flex;
-  align-items: center;
-}
-
 /* =========================================================
-   NAVEGAÇÃO (PREV / NEXT)
+   NAVEGAÇÃO
 ========================================================= */
 
 .lesson__nav {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: center;
   gap: 1rem;
   padding-top: 3rem;
   margin-top: 1rem;
@@ -275,75 +277,16 @@
   transition: all 0.2s;
 }
 
-.lesson__nav-link small {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--muted-foreground);
-}
-
-.lesson__nav-link span {
-  font-weight: 600;
-  color: var(--foreground);
-}
-
-.lesson__nav-link--prev {
-  align-items: flex-start;
-}
-
-.lesson__nav-link--next {
-  align-items: flex-end;
-  text-align: right;
-}
-
 .lesson__nav-link:hover {
   background: var(--accent);
   border-color: var(--primary);
-}
-
-.lesson__nav-module {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  color: var(--muted-foreground);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: all 0.2s;
-}
-
-.lesson__nav-module:hover {
-  color: var(--primary);
-  border-color: var(--primary);
-  background: var(--accent);
 }
 
 /* =========================================================
    RESPONSIVIDADE
 ========================================================= */
 
-@media (max-width: 768px) {
-  .lesson__nav {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .lesson__nav-module {
-    grid-row: 2;
-    grid-column: span 2;
-    width: 100%;
-  }
-
-  .lesson__copy-btn {
-    opacity: 1;
-    /* Always visible on touch devices */
-  }
-}
-
 @media (min-width: 768px) {
-  .lesson__header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
+  .lesson__cards { grid-template-columns: repeat(2, 1fr); }
+  .lesson__header { flex-direction: row; justify-content: space-between; align-items: center; }
 }
