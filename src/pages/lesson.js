@@ -44,12 +44,36 @@ const Icons = {
 
 import { content as fundamentos01 } from "@content/fundamentos/01-introducao";
 import { content as fundamentos02 } from "@content/fundamentos/02-primeiro-codigo";
-import { content as fundamentos03 } from "@content/fundamentos/03-como-browser-le-js"
+import { content as fundamentos03 } from "@content/fundamentos/03-como-browser-le-js";
+import { content as fundamentos04 } from "@content/fundamentos/04-erros-e-console.js"
+import { content as fundamentos05 } from "@content/fundamentos/05-comentarios.js"
+import { content as fundamentos06 } from "@content/fundamentos/06-strict-mode.js"
+import { content as fundamentos07 } from "@content/fundamentos/07-execution-context.js"
+import { content as fundamentos08 } from "@content/fundamentos/08-lexical-environment.js"
+import { content as fundamentos09 } from "@content/fundamentos/09-variable-environment.js"
+import { content as fundamentos10 } from "@content/fundamentos/10-modulos-externos.js"
+
+
+
+
+
+
 
 const CONTENT_MAP = {
   "fundamentos/01-introducao": fundamentos01,
   "fundamentos/02-primeiro-codigo": fundamentos02,
   "fundamentos/03-como-browser-le-js": fundamentos03,
+  "fundamentos/04-erros-e-console": fundamentos04,
+  "fundamentos/05-comentarios": fundamentos05,
+  "fundamentos/06-strict-mode": fundamentos06,
+  "fundamentos/07-execution-context": fundamentos07,
+  "fundamentos/08-lexical-environment": fundamentos08,
+  "fundamentos/09-variable-environment": fundamentos09,
+  "fundamentos/10-modulos-externos": fundamentos10,
+
+ 
+
+  
 };
 
 

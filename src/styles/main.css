@@ -9,6 +9,29 @@
 @import "../pages/styles/lesson.css";
 @import "../pages/styles/modulo.css";
 
+/* Remove o outline padrão apenas no clique do mouse, 
+   mas mantém/estiliza para navegação via teclado (Tab) */
+:focus {
+   outline: none;
+}
+
+/* Quando o usuário navega via teclado */
+:focus-visible {
+   outline: 2px solid var(--primary);
+   /* Ou a cor de destaque do seu tema */
+   outline-offset: 4px;
+   border-radius: 4px;
+   box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.2);
+}
+
+/* Caso queira um efeito suave de transição */
+a,
+button,
+input,
+summary {
+   transition: outline-offset 0.2s ease, box-shadow 0.2s ease;
+}
+
 /* Reset e box-model universal.
    border-box faz padding e border não aumentarem o tamanho declarado do elemento.
    Sem isso, um elemento de width: 100% com padding transbordaria o container pai. */
