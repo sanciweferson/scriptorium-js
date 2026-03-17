@@ -1,0 +1,129 @@
+/* =========================================================
+   GLOBAL BASE
+========================================================= */
+@import "tokens.css";
+@import "header.css";
+@import "footer.css";
+@import "home.css";
+@import "scrool-top.css";
+@import "../pages/styles/lesson.css";
+@import "../pages/styles/modulo.css";
+
+/* Reset e box-model universal.
+   border-box faz padding e border não aumentarem o tamanho declarado do elemento.
+   Sem isso, um elemento de width: 100% com padding transbordaria o container pai. */
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+/* Remove bullets de todas as listas por padrão. */
+ul {
+   list-style: none;
+}
+
+/* Remove sublinhado padrão de links.
+   Cor herdada do pai para não forçar azul de browser em todos os links. */
+a {
+   text-decoration: none;
+   color: inherit;
+}
+
+/* Torna imagens responsivas por padrão.
+   display: block remove o espaço extra que imagens inline criam abaixo delas. */
+img {
+   max-width: 100%;
+   display: block;
+}
+
+/* Botões herdam a fonte do documento.
+   cursor: pointer reforça que são interativos mesmo sem href. */
+button {
+   font: inherit;
+   cursor: pointer;
+   border: none;
+   background: none;
+}
+
+/* ── Estrutura de altura total ──────────────────────────────
+   O objetivo é: footer sempre no fundo, mesmo em páginas curtas.
+
+   Fluxo:
+     html                → min-height: 100dvh (ancora a altura mínima)
+     body                → min-height: 100dvh + flex-column (distribui o espaço)
+     #app                → flex: 1 + flex-column (herda e repassa o espaço)
+     .main               → flex: 1 (cresce para preencher o vazio entre header e footer)
+
+   dvh (dynamic viewport height) desconta a barra do browser em mobile,
+   evitando o scroll indesejado que vh causa em iOS/Android.
+────────────────────────────────────────────────────────── */
+
+html {
+   background-color: var(--background);
+   color: var(--foreground);
+   min-height: 100dvh;
+}
+
+body {
+   min-height: 100dvh;
+   display: flex;
+   flex-direction: column;
+}
+
+/* Elemento raiz onde o main.js injeta o HTML da aplicação */
+#app {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+}
+
+/* Área de conteúdo entre header e footer — cresce para preencher */
+.main {
+   flex: 1;
+}
+
+/* =========================================================
+   CONTAINER
+   Centraliza o conteúdo horizontalmente com largura máxima.
+   Usado no header, footer e nas páginas de conteúdo.
+========================================================= */
+
+.container {
+   width: 100%;
+   max-width: var(--container-max-width);
+   padding-inline: var(--space-lg);
+   margin-inline: auto;
+}
+
+/* =========================================================
+   TEMA — visibilidade dos ícones sol/lua
+========================================================= */
+
+/* Tema escuro: mostra sol (para voltar ao claro), esconde lua */
+[data-theme="dark"] .icon-sun {
+   display: block;
+}
+
+[data-theme="dark"] .icon-moon {
+   display: none;
+}
+
+/* Tema claro: mostra lua (para ir ao escuro), esconde sol */
+[data-theme="light"] .icon-sun {
+   display: none;
+}
+
+[data-theme="light"] .icon-moon {
+   display: block;
+}
+
+/* =========================================================
+   UTILITÁRIOS
+========================================================= */
+
+.hidden {
+   display: none;
+}

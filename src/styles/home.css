@@ -1,0 +1,439 @@
+/* =========================================================
+   HOME PAGE
+   Mobile-first. Usa os tokens do design system (tokens.css).
+========================================================= */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* =========================================================
+   ANIMAÇÃO DE ENTRADA — fade + slide
+========================================================= */
+
+.home__anim-item {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.home__anim-run {
+  animation: homeSlideUp 0.45s ease forwards;
+}
+
+@keyframes homeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.home__hero {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.home__greeting {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  margin-bottom: 0.5rem;
+}
+
+.home__headline {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--foreground);
+  letter-spacing: -0.02em;
+  transition: opacity 0.4s ease;
+}
+
+.home__headline--fade {
+  opacity: 0;
+}
+
+.home__subline {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+  max-width: 52ch;
+  margin-top: 0.75rem;
+}
+
+/* Relógio */
+.home__clock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: fit-content;
+}
+
+.home__clock-time {
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.home__clock-date {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  text-transform: capitalize;
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.home__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.home__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.25rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.home__stat--highlight {
+  border-color: var(--primary);
+  background-color: color-mix(in oklch, var(--primary) 8%, var(--card));
+}
+
+.home__stat--highlight .home__stat-value {
+  color: var(--primary);
+}
+
+.home__stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.home__stat-label {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+/* =========================================================
+   MÓDULOS
+========================================================= */
+
+.home__modules {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.home__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.home__section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.home__btn-reset {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  padding: 0.4rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: transparent;
+  transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+}
+
+.home__btn-reset:hover {
+  color: var(--destructive);
+  border-color: var(--destructive);
+  background-color: color-mix(in oklch, var(--destructive) 8%, transparent);
+}
+
+.home__btn-reset:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.home__module-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.home__module-card {
+  padding: 1rem 1.25rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.home__module-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 12%, transparent);
+}
+
+.home__module-card--done {
+  border-color: color-mix(in oklch, var(--primary) 40%, var(--border));
+}
+
+.home__module-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.home__module-title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.home__module-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.home__module-title a:hover {
+  color: var(--primary);
+}
+
+.home__module-count {
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.home__progress-track {
+  width: 100%;
+  height: 4px;
+  background-color: var(--border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.home__progress-fill {
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: 9999px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 0;
+}
+
+/* =========================================================
+   MODAL DE CONFIRMAÇÃO — RESET PROGRESSO
+
+   Estrutura:
+     .home-modal            → portal no <body>, sempre no DOM quando a home está ativa
+     .home-modal__overlay   → fundo escuro semitransparente, clicável para fechar
+     .home-modal__panel     → card central com conteúdo
+
+   Estados:
+     (sem classe)           → invisível, pointer-events: none
+     .home-modal--open      → visível, com animação de entrada
+========================================================= */
+
+.home-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  /* Invisível por padrão */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.home-modal--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Overlay escuro */
+.home-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: oklch(0 0 0 / 50%);
+  cursor: pointer;
+}
+
+/* Painel central */
+.home-modal__panel {
+  position: relative;
+  /* fica acima do overlay */
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+
+  /* Animação de entrada — escala + fade */
+  transform: scale(0.95) translateY(8px);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.home-modal--open .home-modal__panel {
+  transform: scale(1) translateY(0);
+}
+
+/* Ícone de aviso */
+.home-modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background-color: color-mix(in oklch, var(--destructive) 12%, var(--card));
+  color: var(--destructive);
+  flex-shrink: 0;
+}
+
+.home-modal__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.home-modal__body {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+  max-width: 32ch;
+  margin: 0;
+}
+
+/* Botões de ação */
+.home-modal__actions {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.home-modal__btn {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.home-modal__btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Cancelar — visual neutro */
+.home-modal__btn--cancel {
+  background-color: var(--accent);
+  color: var(--foreground);
+  border-color: var(--border);
+}
+
+.home-modal__btn--cancel:hover {
+  background-color: var(--secondary);
+}
+
+/* Confirmar — destrutivo */
+.home-modal__btn--confirm {
+  background-color: var(--destructive);
+  color: oklch(1 0 0);
+  border-color: transparent;
+}
+
+.home-modal__btn--confirm:hover {
+  opacity: 0.88;
+}
+
+/* =========================================================
+   DESKTOP — min-width: 768px
+========================================================= */
+
+@media (min-width: 768px) {
+  .home {
+    padding-top: 3.5rem;
+    gap: 3.5rem;
+  }
+
+  .home__hero {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .home__hero-text {
+    flex: 1;
+    max-width: 56ch;
+  }
+
+  .home__stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .home__module-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .home__module-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

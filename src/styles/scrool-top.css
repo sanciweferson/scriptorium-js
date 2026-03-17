@@ -1,0 +1,99 @@
+/* =========================================================
+   SCROLL TOP — botão flutuante de volta ao topo
+   Inserido via portal no <body> pelo initScrollTop().
+========================================================= */
+
+.scroll-top {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 500;
+
+  /* Tamanho e forma */
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+
+  /* Visual */
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+
+  /* Layout interno — empilha SVG, % e seta */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Escondido por padrão — aparece via .scroll-top--visible */
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    background-color var(--nav-transition),
+    border-color var(--nav-transition);
+}
+
+/* Estado visível — adicionado pelo JS quando scroll > 10% */
+.scroll-top--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scroll-top:hover {
+  background-color: var(--accent);
+  border-color: var(--primary);
+}
+
+.scroll-top:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.scroll-top:active {
+  transform: scale(0.94);
+}
+
+/* ── Anel SVG ── */
+.scroll-top__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Trilha de fundo — cor apagada */
+.scroll-top__track {
+  stroke: var(--border);
+}
+
+/* Arco de progresso — cor primária */
+.scroll-top__arc {
+  stroke: var(--primary);
+  transition: stroke-dashoffset 0.15s linear;
+}
+
+/* ── Porcentagem ── */
+.scroll-top__pct {
+  position: relative;
+  /* fica acima do SVG */
+  font-size: 0.625rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--foreground);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ── Seta (visível em 0%) ── */
+.scroll-top__arrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--foreground);
+}

@@ -1,0 +1,372 @@
+/* =========================================================
+   HEADER
+========================================================= */
+
+.menuDesktop,
+.nav__theme-desktop {
+  display: none;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+  transition:
+    background-color var(--nav-transition),
+    border-color var(--nav-transition);
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.header__logo img {
+  width: 50px;
+  display: block;
+}
+
+/* =========================================================
+   BOTÕES DO HEADER (hamburguer + tema)
+========================================================= */
+
+.nav__btn-toggle,
+.nav__btn-theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--foreground);
+  transition: background-color var(--nav-transition), color var(--nav-transition);
+  flex-shrink: 0;
+}
+
+.nav__btn-toggle:hover,
+.nav__btn-theme:hover {
+  background-color: var(--accent);
+}
+
+.nav__btn-toggle:focus-visible,
+.nav__btn-theme:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Ícone sol/lua — só um visível por vez (controlado pelo JS de tema) */
+.icon--sun,
+.icon--moon {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+/* =========================================================
+   CHEVRON
+========================================================= */
+
+.nav__chevron {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+  flex-shrink: 0;
+  margin-left: 0.2rem;
+}
+
+.nav__item--has-dropdown:hover .nav__chevron,
+.nav__item--has-dropdown:focus-within .nav__chevron {
+  transform: rotate(180deg);
+}
+
+/* =========================================================
+   DROPDOWN DESKTOP (portal no <body>)
+========================================================= */
+
+.nav__dropdown {
+  position: fixed;
+  top: var(--header-height);
+  min-width: 16rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow:
+    0 8px 32px oklch(0 0 0 / 18%),
+    0 2px 8px oklch(0 0 0 / 8%);
+  list-style: none;
+  padding: 0.375rem;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.nav__dropdown.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Header/título da seção dentro do dropdown */
+.nav__dropdown-header a {
+  display: block;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  margin-bottom: 0.25rem;
+  text-decoration: none;
+  background: none;
+  transition: color 0.15s;
+}
+
+.nav__dropdown-header a:hover {
+  color: var(--foreground);
+  background-color: var(--accent);
+}
+
+/* Links normais dentro do dropdown */
+.nav__dropdown-link {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--foreground);
+  text-decoration: none;
+  border-radius: calc(var(--radius) - 2px);
+  transition: background-color 0.15s;
+  white-space: nowrap;
+}
+
+.nav__dropdown-link:hover {
+  background-color: var(--accent);
+}
+
+/* Separador interno */
+.nav__dropdown-separator {
+  height: 1px;
+  background-color: var(--border);
+  margin: 0.25rem 0.375rem;
+  pointer-events: none;
+}
+
+/* =========================================================
+   ASIDE MOBILE
+========================================================= */
+
+.nav__aside {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 85%;
+  max-width: 22rem;
+  /* evita ficar largo demais em tablets */
+  height: 100dvh;
+  /* dvh respeita barras do browser mobile */
+  background-color: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 99;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* evita scroll "vazar" para a página */
+}
+
+.nav__aside.open {
+  transform: translateX(0);
+}
+
+/* Cabeçalho fixo dentro do aside (logo + tema) */
+.mobile-wrappep {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--sidebar);
+  padding: 1rem var(--space-md);
+  border-bottom: 1px solid var(--sidebar-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aside_logo img {
+  width: 30px;
+  display: block;
+}
+
+/* =========================================================
+   MENU MOBILE
+========================================================= */
+
+.menuMobile {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0;
+}
+
+.menuMobile li a {
+  display: block;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--foreground);
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: background-color var(--nav-transition);
+}
+
+/* BUG CORRIGIDO: era .nav__list--mobile (classe inexistente) */
+.menuMobile li a:hover {
+  background-color: var(--accent);
+}
+
+/* Item pai com sublinks */
+.nav__mobile-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__mobile-parent a {
+  flex: 1;
+}
+
+/* Botão de expandir o submenu */
+.nav__mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.25rem;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--muted-foreground);
+  transition: background-color var(--nav-transition), color var(--nav-transition);
+  flex-shrink: 0;
+}
+
+.nav__mobile-toggle:hover {
+  background-color: var(--accent);
+  color: var(--foreground);
+}
+
+/* Chevron dentro do toggle */
+.nav__mobile-chevron {
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.nav__mobile-item--has-sub.is-open .nav__mobile-chevron {
+  transform: rotate(180deg);
+}
+
+/* Submenu mobile (acordeão) */
+.nav__mobile-sub {
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.25rem 0 0.25rem 1rem;
+  margin: 0;
+}
+
+.nav__mobile-item--has-sub.is-open .nav__mobile-sub {
+  display: flex;
+}
+
+.nav__mobile-sub-item a {
+  font-size: 0.8125rem;
+  padding: 0.45rem 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.nav__mobile-sub-item a:hover {
+  color: var(--foreground);
+  background-color: var(--accent);
+}
+
+/* =========================================================
+   DESKTOP — min-width: 768px
+========================================================= */
+
+@media (min-width: 768px) {
+
+  .nav__btn-toggle,
+  .nav__aside {
+    display: none;
+  }
+
+  .menuDesktop,
+  .nav__theme-desktop {
+    display: block;
+  }
+
+  .header__logo img {
+    width: 40px;
+  }
+
+  /* Lista horizontal de links do nav */
+  .menuDesktop {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 0.25rem;
+    /* gap menor — os links já têm padding próprio */
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
+  }
+
+  /* Link simples + link pai (com chevron) — mesmo visual */
+  .menuDesktop li a,
+  .nav__link--parent {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    border-radius: calc(var(--radius) - 2px);
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      color var(--nav-transition),
+      background-color var(--nav-transition);
+  }
+
+  .menuDesktop li a:hover,
+  .nav__link--parent:hover {
+    color: var(--foreground);
+    background-color: var(--accent);
+  }
+}
+
+/* Portal dropdown — classe de conveniência para transição */
+.nav-portal-dropdown {
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
